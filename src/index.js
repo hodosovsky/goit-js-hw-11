@@ -17,6 +17,7 @@ function onSearch(event) {
 
   imagesApiService.query = event.currentTarget.elements.searchQuery.value;
   imagesApiService.resetPage();
+  refs.galleryContainer.innerHTML = '';
   console.log(imagesApiService.query);
   imagesApiService.fetchImages().then(images => appendImagesMarkup(images));
 }
