@@ -40,7 +40,7 @@ async function onSearch(event) {
     appendImagesMarkup(galleryImages.hits);
     refs.loadMoreButton.style.display = 'block';
     lightbox.refresh();
-    if (galleryImages.hits.length > 0 && galleryImages.hits.length < 40) {
+    if (imagesApiService.readHits() <= 40) {
       Notify.warning(
         "We're sorry, but you've reached the end of search results."
       );
