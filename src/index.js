@@ -1,5 +1,6 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import ImagesApiService from './gallery-service';
+
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 let lightbox = new SimpleLightbox('.gallery .photo-card > a', {
@@ -40,6 +41,7 @@ async function onSearch(event) {
     appendImagesMarkup(galleryImages.hits);
     refs.loadMoreButton.style.display = 'block';
     lightbox.refresh();
+
     if (imagesApiService.readHits() <= 40) {
       Notify.warning(
         "We're sorry, but you've reached the end of search results."
@@ -59,7 +61,17 @@ async function loadMoreClick() {
   try {
     appendImagesMarkup(galleryImages.hits);
     lightbox.refresh();
+
     refs.loadMoreButton.style.display = 'block';
+    const screenHeight = document.documentElement.clientHeight;
+    const { height: cardHeight } = document
+      .querySelector('.gallery')
+      .firstElementChild.getBoundingClientRect();
+
+    window.scrollBy({
+      top: cardHeight * (screenHeight / cardHeight),
+      behavior: 'smooth',
+    });
     if (galleryImages.hits.length !== 40) {
       Notify.warning(
         "We're sorry, but you've reached the end of search results."
