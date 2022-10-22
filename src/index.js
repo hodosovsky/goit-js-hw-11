@@ -69,7 +69,7 @@ async function loadMoreClick() {
       .firstElementChild.getBoundingClientRect();
 
     window.scrollBy({
-      top: cardHeight * (screenHeight / cardHeight),
+      top: cardHeight * (screenHeight / cardHeight) - 5,
       behavior: 'smooth',
     });
     if (galleryImages.hits.length !== 40) {

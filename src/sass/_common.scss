@@ -45,7 +45,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  padding: 10px;
+  padding: 5px;
 }
 
 .info {
@@ -54,6 +54,13 @@ body {
 
 .info-item {
   display: flex;
-
+  flex-direction: column;
   align-content: center;
+  padding: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  gap: 10px;
+  border: 1px solid rgb(12, 76, 76);
+  border-radius: 20px;
+  background-color: lightcyan;
 }
