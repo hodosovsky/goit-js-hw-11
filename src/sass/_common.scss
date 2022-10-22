@@ -2,6 +2,22 @@
 body {
   scroll-behavior: smooth;
 }
+
+.search-form {
+  display: flex;
+
+  padding: 20px;
+  gap: 10px;
+  background-color: teal;
+  border: 1px solid tomato;
+}
+
+.search-form::before {
+  content: 'Photo Gallery';
+  margin-right: 200px;
+  color: white;
+  font-size: 19px;
+}
 .load-more {
   display: block;
   margin-left: auto;
