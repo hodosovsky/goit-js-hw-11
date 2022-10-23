@@ -24,8 +24,9 @@ async function onSearch(event) {
   imagesApiService.query = event.currentTarget.elements.searchQuery.value;
 
   imagesApiService.resetPage();
-  const galleryImages = await imagesApiService.fetchImages();
   try {
+    const galleryImages = await imagesApiService.fetchImages();
+
     if (galleryImages.hits.length === 0) {
       Notify.failure(
         '"Sorry, there are no images matching your search query. Please try again."'
@@ -56,9 +57,9 @@ async function onSearch(event) {
 
 async function loadMoreClick() {
   refs.loadMoreButton.style.display = 'none';
-
-  const galleryImages = await imagesApiService.fetchImages();
   try {
+    const galleryImages = await imagesApiService.fetchImages();
+
     appendImagesMarkup(galleryImages.hits);
     lightbox.refresh();
 
