@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 export default class GalleryApiService {
   constructor() {
@@ -17,13 +18,18 @@ export default class GalleryApiService {
     //     return data.hits;
     //   });
     try {
-      const response = await fetch(
-        `https://pixabay.com/api/?key=30757055-8f8e35a6024963473ffe3e1a3&per_page=40&page=${this.page}&q=${this.searchQuery}&image_type=photos&orientation=horizontal&safesearch=true`
-      );
-      const newGallery = await response.json();
-      this.incrementPage();
-      this.hits = newGallery.totalHits;
-      return newGallery;
+      return await axios
+        .get(
+          `https://pixabay.com/api/?key=30757055-8f8e35a6024963473ffe3e1a3&per_page=40&page=${this.page}&q=${this.searchQuery}&image_type=photos&orientation=horizontal&safesearch=true`
+        )
+        .then(res => {
+          this.incrementPage();
+          this.hits = res.data.totalHits;
+          return res.data;
+        });
+      // const newGallery = await response.json();
+
+      //  / return newGallery;
     } catch (err) {
       console.log(err);
     }
