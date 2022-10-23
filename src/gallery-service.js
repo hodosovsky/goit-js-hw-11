@@ -16,15 +16,17 @@ export default class GalleryApiService {
     //     this.hits = data.totalHits;
     //     return data.hits;
     //   });
-
-    const response = await fetch(
-      `https://pixabay.com/api/?key=30757055-8f8e35a6024963473ffe3e1a3&per_page=40&page=${this.page}&q=${this.searchQuery}&image_type=photos&orientation=horizontal&safesearch=true`
-    );
-    const newGallery = await response.json();
-    this.incrementPage();
-    this.hits = newGallery.totalHits;
-
-    return newGallery;
+    try {
+      const response = await fetch(
+        `https://pixabay.com/api/?key=30757055-8f8e35a6024963473ffe3e1a3&per_page=40&page=${this.page}&q=${this.searchQuery}&image_type=photos&orientation=horizontal&safesearch=true`
+      );
+      const newGallery = await response.json();
+      this.incrementPage();
+      this.hits = newGallery.totalHits;
+      return newGallery;
+    } catch (err) {
+      console.log(err);
+    }
   }
   incrementPage() {
     this.page += 1;
